@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tools · Foxxe Labs</title>
+  <meta name="description" content="Tools and demos from Foxxe Labs." />
+  <style>
+    :root{
+      --bg:#0b0f14; --card:#121923; --muted:#9fb0c3; --text:#e9f0f7;
+      --accent:#7dd3fc; --accent2:#a78bfa; --border:rgba(255,255,255,.10);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background: radial-gradient(1200px 800px at 15% 10%, rgba(167,139,250,.18), transparent 55%),
+                  radial-gradient(1000px 700px at 85% 20%, rgba(125,211,252,.16), transparent 55%),
+                  var(--bg);
+      color:var(--text);
+      line-height:1.45;
+    }
+    a{color:var(--accent)}
+    a:hover{color:#b3e7ff}
+    .sitebar{position:sticky; top:0; z-index:50; background:rgba(11,15,20,.72); border-bottom:1px solid var(--border); backdrop-filter: blur(10px);}
+    .sitebar-inner{max-width:980px; margin:0 auto; padding:12px 18px; display:flex; align-items:center; justify-content:space-between; gap:14px;}
+    .brand{font-weight:900; letter-spacing:.2px; text-decoration:none; color:var(--text)}
+    .nav{display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end}
+    .nav a{color:var(--muted); text-decoration:none; font-weight:750; padding:6px 10px; border-radius:999px; border:1px solid transparent;}
+    .nav a:hover{color:var(--text); border-color:rgba(255,255,255,.12);}
+    .nav a.active{color:var(--text); border-color:rgba(125,211,252,.45); background:rgba(125,211,252,.08);}
+    main{max-width:980px; margin:0 auto; padding: 24px 18px 70px;}
+    .card{
+      background: rgba(18,25,35,.92);
+      border:1px solid var(--border);
+      border-radius: 22px;
+      padding: 18px;
+      box-shadow: 0 18px 40px rgba(0,0,0,.28);
+      backdrop-filter: blur(6px);
+    }
+    h1{margin:0 0 10px 0; font-size: clamp(1.5rem, 2.8vw, 2.1rem);}
+    .muted{color:var(--muted)}
+    .tool{
+      display:flex; align-items:flex-start; justify-content:space-between; gap: 14px; flex-wrap:wrap;
+      border:1px solid var(--border); border-radius: 18px; padding: 14px; background: rgba(255,255,255,.02);
+      margin-top: 12px;
+    }
+    .tool a.title{font-weight:900; text-decoration:none; color:var(--text)}
+    .pill{border:1px solid var(--border); border-radius:999px; padding:6px 10px; color:var(--muted); font-size:.9rem; background: rgba(255,255,255,.03);}
+    .pillrow{display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end}
+    footer{max-width:980px; margin:0 auto; padding: 0 18px 40px; color:var(--muted); font-size:.92rem;}
+  </style>
+</head>
+<body>
+  <div class="sitebar">
+    <div class="sitebar-inner">
+      <a class="brand" href="/">Foxxe Labs</a>
+      <nav class="nav">
+        <a href="/">Home</a>
+        <a class="active" href="/tools/">Tools</a>
+      </nav>
+    </div>
+  </div>
+
+  <main>
+    <div class="card">
+      <h1>Tools</h1>
+      <p class="muted">A small cabinet of working demos. More will show up as they stop being feral.</p>
+
+      <div class="tool">
+        <div style="min-width: 42ch; flex: 1 1 42ch;">
+          <a class="title" href="/tools/thinking-style-snapshot/">Thinking Style Snapshot</a>
+          <div class="muted">10 YES/NO statements that estimate whether you lean focused, hybrid, or broad/systems. Includes multipotentialite follow-on links.</div>
+        </div>
+        <div class="pillrow">
+          <span class="pill">~2 minutes</span>
+          <span class="pill">No data stored</span>
+          <span class="pill">Printable</span>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div>© <span id="year"></span> Foxxe Labs.</div>
+  </footer>
+
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

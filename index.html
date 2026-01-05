@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Foxxe Labs</title>
+  <meta name="description" content="Foxxe Labs: practical tools, research prototypes, and creative experiments." />
+  <style>
+    :root{
+      --bg:#0b0f14;
+      --card:#121923;
+      --muted:#9fb0c3;
+      --text:#e9f0f7;
+      --accent:#7dd3fc;
+      --accent2:#a78bfa;
+      --border:rgba(255,255,255,.10);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background: radial-gradient(1200px 800px at 15% 10%, rgba(167,139,250,.18), transparent 55%),
+                  radial-gradient(1000px 700px at 85% 20%, rgba(125,211,252,.16), transparent 55%),
+                  var(--bg);
+      color:var(--text);
+      line-height:1.45;
+    }
+    a{color:var(--accent)}
+    a:hover{color:#b3e7ff}
+    .sitebar{position:sticky; top:0; z-index:50; background:rgba(11,15,20,.72); border-bottom:1px solid var(--border); backdrop-filter: blur(10px);}
+    .sitebar-inner{max-width:1100px; margin:0 auto; padding:12px 18px; display:flex; align-items:center; justify-content:space-between; gap:14px;}
+    .brand{font-weight:900; letter-spacing:.2px; text-decoration:none; color:var(--text)}
+    .nav{display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end}
+    .nav a{color:var(--muted); text-decoration:none; font-weight:750; padding:6px 10px; border-radius:999px; border:1px solid transparent;}
+    .nav a:hover{color:var(--text); border-color:rgba(255,255,255,.12);}
+    .nav a.active{color:var(--text); border-color:rgba(125,211,252,.45); background:rgba(125,211,252,.08);}
+    main{max-width:1100px; margin:0 auto; padding: 28px 18px 70px;}
+    .hero{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 18px;
+      align-items:stretch;
+    }
+    @media (max-width: 900px){ .hero{grid-template-columns:1fr} }
+    .card{
+      background: rgba(18,25,35,.92);
+      border:1px solid var(--border);
+      border-radius: 22px;
+      padding: 18px;
+      box-shadow: 0 18px 40px rgba(0,0,0,.28);
+      backdrop-filter: blur(6px);
+    }
+    h1{margin:0 0 10px 0; font-size: clamp(1.7rem, 3.2vw, 2.6rem); letter-spacing:.2px;}
+    .sub{color:var(--muted); margin:0; max-width: 70ch}
+    .ctaRow{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px}
+    .btn{
+      display:inline-flex; align-items:center; gap:10px;
+      border:1px solid var(--border);
+      border-radius: 14px;
+      padding: 10px 12px;
+      text-decoration:none;
+      font-weight:850;
+      color:var(--text);
+      background: linear-gradient(180deg, rgba(125,211,252,.22), rgba(167,139,250,.10));
+    }
+    .btn.secondary{
+      background: rgba(255,255,255,.03);
+      font-weight:700;
+      color:var(--muted);
+    }
+    .btn:hover{border-color:rgba(255,255,255,.22)}
+    .pillrow{display:flex; gap:8px; flex-wrap:wrap; margin-top:12px}
+    .pill{
+      border:1px solid var(--border);
+      border-radius:999px;
+      padding:6px 10px;
+      color:var(--muted);
+      font-size:.92rem;
+      background: rgba(255,255,255,.03);
+    }
+    .grid2{display:grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px;}
+    @media (max-width: 900px){ .grid2{grid-template-columns:1fr} }
+    h2{margin:0 0 10px 0; font-size: 1.2rem}
+    .list{margin: 8px 0 0 18px; color:#d5e2f0}
+    .muted{color:var(--muted)}
+    .kicker{font-weight:900; color:#d7e4f2; letter-spacing:.2px; text-transform:uppercase; font-size:.85rem}
+    footer{max-width:1100px; margin:0 auto; padding: 0 18px 40px; color:var(--muted); font-size:.92rem;}
+    .note{border-left: 3px solid rgba(125,211,252,.55); padding-left: 10px; margin-top: 10px; color: var(--muted);}
+  </style>
+</head>
+<body>
+  <div class="sitebar">
+    <div class="sitebar-inner">
+      <a class="brand" href="/">Foxxe Labs</a>
+      <nav class="nav">
+        <a class="active" href="/">Home</a>
+        <a href="/tools/">Tools</a>
+      </nav>
+    </div>
+  </div>
+
+  <main>
+    <section class="hero">
+      <div class="card">
+        <div class="kicker">Practical experiments</div>
+        <h1>Tools, prototypes, and research-adjacent oddities.</h1>
+        <p class="sub">
+          Foxxe Labs is a small workshop for building things that help people think, learn, write, and test ideas.
+          Some projects are polished. Some are prototypes. All are meant to be useful.
+        </p>
+
+        <div class="ctaRow">
+          <a class="btn" href="/tools/">Browse tools</a>
+          <a class="btn secondary" href="/tools/thinking-style-snapshot/">Take the Thinking Style Snapshot</a>
+        </div>
+
+        <div class="pillrow">
+          <span class="pill">Static site</span>
+          <span class="pill">Cloudflare Pages friendly</span>
+          <span class="pill">Low-friction publishing</span>
+          <span class="pill">No tracking by default</span>
+        </div>
+
+        <div class="note">
+		If you're here for the UCA project: that lives on <strong><a href="https://ucahub.ie">ucahub.ie</a></strong> when it's live. This site is the general Foxxe Labs workshop.
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Featured</h2>
+        <ul class="list">
+          <li><a href="/tools/thinking-style-snapshot/">Thinking Style Snapshot</a> (YES/NO, ~2 minutes)</li>
+          <li class="muted">More tools will appear here as they hatch.</li>
+        </ul>
+
+        <h2 style="margin-top:16px;">What this site is (and isn’t)</h2>
+        <ul class="list">
+          <li><strong>Is:</strong> a public front door for lightweight tools and demos.</li>
+          <li><strong>Isn’t:</strong> a data collection pipeline (unless explicitly stated on a tool page).</li>
+        </ul>
+
+        <div class="note">
+          Want a different vibe: more academic, more playful, or more “product”? Easy to reskin.
+        </div>
+      </div>
+    </section>
+
+    <section class="grid2">
+      <div class="card">
+        <h2>Tools</h2>
+        <p class="muted">Small utilities, quizzes, and interactive pages you can share.</p>
+        <ul class="list">
+          <li><a href="/tools/">Tools index</a></li>
+          <li><a href="/tools/thinking-style-snapshot/">Thinking Style Snapshot</a></li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>Contact</h2>
+	<p>
+	Email: <a href=mailto:contact@foxxelabs.ie">contact@foxxelabs.ie</a>
+	</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div>© <span id="year"></span> Foxxe Labs. Built as a lightweight static site for Cloudflare Pages.</div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
