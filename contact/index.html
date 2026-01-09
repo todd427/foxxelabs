@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Tools · Foxxe Labs</title>
-  <meta name="description" content="Tools and demos from Foxxe Labs." />
+  <title>Contact · Foxxe Labs</title>
+  <meta name="description" content="Contact Foxxe Labs." />
   <style>
     :root{
       --bg:#0b0f14; --card:#121923; --muted:#9fb0c3; --text:#e9f0f7;
@@ -39,15 +39,12 @@
       backdrop-filter: blur(6px);
     }
     h1{margin:0 0 10px 0; font-size: clamp(1.5rem, 2.8vw, 2.1rem);}
+    h2{margin:18px 0 10px 0; font-size: 1.15rem}
     .muted{color:var(--muted)}
-    .tool{
-      display:flex; align-items:flex-start; justify-content:space-between; gap: 14px; flex-wrap:wrap;
-      border:1px solid var(--border); border-radius: 18px; padding: 14px; background: rgba(255,255,255,.02);
-      margin-top: 12px;
-    }
-    .tool a.title{font-weight:900; text-decoration:none; color:var(--text)}
-    .pill{border:1px solid var(--border); border-radius:999px; padding:6px 10px; color:var(--muted); font-size:.9rem; background: rgba(255,255,255,.03);}
-    .pillrow{display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end}
+    .pillrow{display:flex; gap:8px; flex-wrap:wrap; margin-top:12px}
+    .pill{border:1px solid var(--border); border-radius:999px; padding:6px 10px; color:var(--muted); font-size:.92rem; background: rgba(255,255,255,.03);}
+    .note{border-left: 3px solid rgba(125,211,252,.55); padding-left: 10px; margin-top: 12px; color: var(--muted);}
+    code{background: rgba(255,255,255,.04); padding: 2px 6px; border-radius: 8px; border: 1px solid rgba(255,255,255,.08);}
     footer{max-width:980px; margin:0 auto; padding: 0 18px 40px; color:var(--muted); font-size:.92rem;}
   </style>
 </head>
@@ -57,29 +54,40 @@
       <a class="brand" href="/">Foxxe Labs</a>
       <nav class="nav">
         <a href="/">Home</a>
-        <a class="active" href="/tools/">Tools</a>
+        <a href="/tools/">Tools</a>
         <a href="/about/">About</a>
-        <a href="/contact/">Contact</a>
+        <a class="active" href="/contact/">Contact</a>
       </nav>
     </div>
   </div>
 
   <main>
     <div class="card">
-      <h1>Tools</h1>
-      <p class="muted">A small cabinet of working demos. More will show up as they stop being feral.</p>
-      <p class="muted">Need context? See <a href="/about/">About</a> or <a href="/contact/">Contact</a>.</p>
+      <h1>Contact</h1>
+      <p class="muted">
+        Best option: email. If you’re writing about a specific tool, include the page URL in your message so I know where you came from.
+      </p>
 
-      <div class="tool">
-        <div style="min-width: 42ch; flex: 1 1 42ch;">
-          <a class="title" href="/tools/thinking-style-snapshot/">Thinking Style Snapshot</a>
-          <div class="muted">10 YES/NO statements that estimate whether you lean focused, hybrid, or broad/systems. Includes multipotentialite follow-on links.</div>
-        </div>
-        <div class="pillrow">
-          <span class="pill">~2 minutes</span>
-          <span class="pill">No data stored</span>
-          <span class="pill">Printable</span>
-        </div>
+      <div class="pillrow">
+        <span class="pill">Email-forwarding friendly</span>
+        <span class="pill">No contact form (yet)</span>
+        <span class="pill">Fastest response</span>
+      </div>
+
+      <h2>Email</h2>
+      <p>
+        <a href="mailto:contact@foxxelabs.ie">contact@foxxelabs.ie</a>
+      </p>
+
+      <h2>Tool-specific addresses (optional)</h2>
+      <p class="muted">
+        If you use Cloudflare Email Routing, you can create addresses like
+        <code>snapshot@foxxelabs.ie</code> or <code>tools@foxxelabs.ie</code> and forward them to the same inbox.
+        That gives you a built-in “where did this come from?” indicator in the email’s <em>To:</em> line.
+      </p>
+
+      <div class="note">
+        If you want a real form (name/message) without exposing your email, we can add a Cloudflare Worker later.
       </div>
     </div>
   </main>
@@ -87,7 +95,6 @@
   <footer>
     <div>© <span id="year"></span> Foxxe Labs.</div>
   </footer>
-
   <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>

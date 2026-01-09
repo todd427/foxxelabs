@@ -5,7 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Thinking Style Snapshot (YES/NO)</title>
   <style>
-    :root{
+    
+    .post-only{display:none;}
+    body.done .post-only{display:block;}
+    body.done .pre-only{display:none;}
+/* Hide the entire right column until results are calculated */
+    body:not(.done) main.grid{grid-template-columns: 1fr;}
+    body:not(.done) .results-aside{display:none;}
+    body.done .results-aside{display:block;}
+:root{
       --bg:#0b0f14;
       --card:#121923;
       --muted:#9fb0c3;
@@ -229,6 +237,8 @@
         <a href="/">Home</a>
         <a href="/tools/">Tools</a>
         <a class="active" href="/tools/thinking-style-snapshot/">Thinking Style Snapshot</a>
+        <a href="/about/">About</a>
+        <a href="/contact/">Contact</a>
       </nav>
     </div>
   </div>
@@ -258,6 +268,7 @@
     <section class="card" aria-labelledby="quizTitle">
       <h2 id="quizTitle">Answer like it's a vibe-check</h2>
       <p class="muted">Read each statement once. Answer YES or NO (gut-level is fine). Don’t try to “game” the result.</p>
+      <p class="note pre-only">Once you click <strong>Calculate Snapshot</strong>, the interpretation panel will appear on the right (with links to follow on).</p>
 
       <form id="snapshotForm">
         <div class="questions" role="group" aria-label="Thinking Style Snapshot Questions">
@@ -381,8 +392,8 @@
       </p>
     </section>
 
-    <aside class="card" aria-labelledby="howTitle">
-      <h2 id="howTitle">How to read your snapshot</h2>
+<aside class="card post-only results-aside" aria-labelledby="howTitlePost">
+      <h2 id="howTitlePost">How to read your snapshot</h2>
       <p class="muted">Count how many YES answers you gave.</p>
       <ul class="list">
         <li><strong>0–3 YES</strong> → Focused Thinker (depth, consistency, sustained attention)</li>
@@ -411,7 +422,7 @@
       </ul>
 
       <div class="note">
-        Tip: If this is for an assignment, screenshot or print the result panel after calculating and include it as an appendix.
+        Tip: treat this as an experiment. Re-take after a big life change or every 6–12 months.
       </div>
     </aside>
   </main>
@@ -523,6 +534,7 @@
     });
     linksBlock.appendChild(ul);
 
+    document.body.classList.add('done');
     result.classList.add('show');
     result.scrollIntoView({behavior: "smooth", block: "start"});
   }
@@ -537,6 +549,7 @@
   resetBtn.addEventListener('click', () => {
     form.reset();
     result.classList.remove('show');
+    document.body.classList.remove('done');
   });
 })();
 </script>

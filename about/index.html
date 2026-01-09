@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Tools · Foxxe Labs</title>
-  <meta name="description" content="Tools and demos from Foxxe Labs." />
+  <title>About · Foxxe Labs</title>
+  <meta name="description" content="About Foxxe Labs." />
   <style>
     :root{
       --bg:#0b0f14; --card:#121923; --muted:#9fb0c3; --text:#e9f0f7;
@@ -39,16 +39,11 @@
       backdrop-filter: blur(6px);
     }
     h1{margin:0 0 10px 0; font-size: clamp(1.5rem, 2.8vw, 2.1rem);}
+    h2{margin:18px 0 10px 0; font-size: 1.15rem}
     .muted{color:var(--muted)}
-    .tool{
-      display:flex; align-items:flex-start; justify-content:space-between; gap: 14px; flex-wrap:wrap;
-      border:1px solid var(--border); border-radius: 18px; padding: 14px; background: rgba(255,255,255,.02);
-      margin-top: 12px;
-    }
-    .tool a.title{font-weight:900; text-decoration:none; color:var(--text)}
-    .pill{border:1px solid var(--border); border-radius:999px; padding:6px 10px; color:var(--muted); font-size:.9rem; background: rgba(255,255,255,.03);}
-    .pillrow{display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end}
+    .list{margin: 8px 0 0 18px; color:#d5e2f0}
     footer{max-width:980px; margin:0 auto; padding: 0 18px 40px; color:var(--muted); font-size:.92rem;}
+    .note{border-left: 3px solid rgba(125,211,252,.55); padding-left: 10px; margin-top: 12px; color: var(--muted);}
   </style>
 </head>
 <body>
@@ -57,8 +52,8 @@
       <a class="brand" href="/">Foxxe Labs</a>
       <nav class="nav">
         <a href="/">Home</a>
-        <a class="active" href="/tools/">Tools</a>
-        <a href="/about/">About</a>
+        <a href="/tools/">Tools</a>
+        <a class="active" href="/about/">About</a>
         <a href="/contact/">Contact</a>
       </nav>
     </div>
@@ -66,28 +61,40 @@
 
   <main>
     <div class="card">
-      <h1>Tools</h1>
-      <p class="muted">A small cabinet of working demos. More will show up as they stop being feral.</p>
-      <p class="muted">Need context? See <a href="/about/">About</a> or <a href="/contact/">Contact</a>.</p>
+      <h1>About Foxxe Labs</h1>
+      <p class="muted">
+        Foxxe Labs is a small workshop where ideas become prototypes and prototypes become tools.
+        The goal is simple: build things that make thinking easier, learning faster, and choices clearer.
+      </p>
 
-      <div class="tool">
-        <div style="min-width: 42ch; flex: 1 1 42ch;">
-          <a class="title" href="/tools/thinking-style-snapshot/">Thinking Style Snapshot</a>
-          <div class="muted">10 YES/NO statements that estimate whether you lean focused, hybrid, or broad/systems. Includes multipotentialite follow-on links.</div>
-        </div>
-        <div class="pillrow">
-          <span class="pill">~2 minutes</span>
-          <span class="pill">No data stored</span>
-          <span class="pill">Printable</span>
-        </div>
+      <h2>What you’ll find here</h2>
+      <ul class="list">
+        <li><strong>Tools</strong> you can share (quizzes, checklists, small interactive demos).</li>
+        <li><strong>Research-adjacent prototypes</strong> that explore human-AI interaction, trust, and cognition.</li>
+        <li><strong>Creative experiments</strong> that are useful even when they’re strange.</li>
+      </ul>
+
+      <h2>What you won’t find (unless a page explicitly says otherwise)</h2>
+      <ul class="list">
+        <li>Hidden data collection.</li>
+        <li>Tracking by default.</li>
+      </ul>
+
+      <div class="note">
+        If a tool ever collects responses, the page will say so clearly, and will include a plain-language privacy note.
       </div>
+
+      <h2>Start here</h2>
+      <ul class="list">
+        <li><a href="/tools/thinking-style-snapshot/">Thinking Style Snapshot</a></li>
+        <li><a href="/tools/">Tools index</a></li>
+      </ul>
     </div>
   </main>
 
   <footer>
     <div>© <span id="year"></span> Foxxe Labs.</div>
   </footer>
-
   <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>
