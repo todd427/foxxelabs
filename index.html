@@ -79,11 +79,13 @@
       background: rgba(255,255,255,.03);
     }
     .grid2{display:grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px;}
-    @media (max-width: 900px){ .grid2{grid-template-columns:1fr} }
+    .grid3{display:grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-top: 16px;}
+    @media (max-width: 900px){ .grid2,.grid3{grid-template-columns:1fr} }
     h2{margin:0 0 10px 0; font-size: 1.2rem}
     .list{margin: 8px 0 0 18px; color:#d5e2f0}
     .muted{color:var(--muted)}
     .kicker{font-weight:900; color:#d7e4f2; letter-spacing:.2px; text-transform:uppercase; font-size:.85rem}
+    .tag{display:inline-block; font-size:.78rem; padding:2px 8px; border-radius:999px; border:1px solid var(--border); color:var(--muted); margin-bottom:8px;}
     footer{max-width:1100px; margin:0 auto; padding: 0 18px 40px; color:var(--muted); font-size:.92rem;}
     .note{border-left: 3px solid rgba(125,211,252,.55); padding-left: 10px; margin-top: 10px; color: var(--muted);}
   </style>
@@ -94,8 +96,9 @@
       <a class="brand" href="/">Foxxe Labs</a>
       <nav class="nav">
         <a class="active" href="/">Home</a>
-        <a href="/anseo-ui/">Anseo UI Development</a>
+        <a href="/anseo-ui/">Anseo UI</a>
         <a href="/tools/">Tools</a>
+        <a href="/claude-code/">Writing</a>
         <a href="/about/">About</a>
         <a href="/contact/">Contact</a>
       </nav>
@@ -135,22 +138,22 @@
         <h2>Featured</h2>
         <ul class="list">
           <li><a href="/tools/thinking-style-snapshot/">Thinking Style Snapshot</a> (YES/NO, ~2 minutes)</li>
-          <li class="muted">More tools will appear here as they hatch.</li>
+          <li><a href="/claude-code/">The Accidental Revolution: How Claude Code Came to Be</a></li>
         </ul>
 
-        <h2 style="margin-top:16px;">What this site is (and isn’t)</h2>
+        <h2 style="margin-top:16px;">What this site is (and isn't)</h2>
         <ul class="list">
           <li><strong>Is:</strong> a public front door for lightweight tools and demos.</li>
-          <li><strong>Isn’t:</strong> a data collection pipeline (unless explicitly stated on a tool page).</li>
+          <li><strong>Isn't:</strong> a data collection pipeline (unless explicitly stated on a tool page).</li>
         </ul>
 
         <div class="note">
-          Want a different vibe: more academic, more playful, or more “product”? Easy to reskin.
+          Want a different vibe: more academic, more playful, or more "product"? Easy to reskin.
         </div>
       </div>
     </section>
 
-    <section class="grid2">
+    <section class="grid3">
       <div class="card">
         <h2>Tools</h2>
         <p class="muted">Small utilities, quizzes, and interactive pages you can share.</p>
@@ -161,9 +164,21 @@
       </div>
 
       <div class="card">
+        <h2>Writing</h2>
+        <p class="muted">Research, commentary, and the occasional opinion.</p>
+        <ul class="list">
+          <li>
+            <span class="tag">AI</span><br>
+            <a href="/claude-code/">The Accidental Revolution</a><br>
+            <span style="color:var(--muted);font-size:.9rem;">How Claude Code came to be — March 2026</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="card">
         <h2>Contact</h2>
         <p class="muted">
-          If you want a “proper” contact page, we can add one. For now: link out to whatever you prefer.
+          If you want a "proper" contact page, we can add one. For now: link out to whatever you prefer.
         </p>
         <ul class="list">
           <li><a href="/contact/">Contact page</a></li>

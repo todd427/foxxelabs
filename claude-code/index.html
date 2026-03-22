@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Accidental Revolution: How Claude Code Came to Be — Foxxe Labs</title>
+  <meta name="description" content="It started with a command-line hack to change the music. Eighteen months later, Claude Code is generating half a billion dollars a year and redefining software development." />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=JetBrains+Mono:wght@400;600&display=swap');
+
+    :root {
+      --bg: #0b0f14;
+      --card: #121923;
+      --muted: #9fb0c3;
+      --text: #e9f0f7;
+      --accent: #7dd3fc;
+      --accent2: #a78bfa;
+      --border: rgba(255,255,255,.10);
+      --red: #f87171;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: radial-gradient(1200px 800px at 15% 10%, rgba(167,139,250,.12), transparent 55%),
+                  radial-gradient(1000px 700px at 85% 20%, rgba(125,211,252,.10), transparent 55%),
+                  var(--bg);
+      color: var(--text);
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 18px;
+      line-height: 1.75;
+      min-height: 100vh;
+    }
+
+    a { color: var(--accent); }
+    a:hover { color: #b3e7ff; }
+
+    /* Nav */
+    .sitebar {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(11,15,20,.80);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(10px);
+    }
+    .sitebar-inner {
+      max-width: 900px; margin: 0 auto;
+      padding: 12px 18px;
+      display: flex; align-items: center; justify-content: space-between; gap: 14px;
+    }
+    .brand { font-weight: 900; letter-spacing: .2px; text-decoration: none; color: var(--text); }
+    .nav { display: flex; gap: 10px; flex-wrap: wrap; }
+    .nav a {
+      color: var(--muted); text-decoration: none; font-weight: 700;
+      padding: 6px 10px; border-radius: 999px; border: 1px solid transparent;
+      font-family: system-ui, sans-serif; font-size: 0.9rem;
+    }
+    .nav a:hover { color: var(--text); border-color: rgba(255,255,255,.12); }
+    .nav a.active { color: var(--text); border-color: rgba(125,211,252,.45); background: rgba(125,211,252,.08); }
+
+    /* Layout */
+    .wrapper { max-width: 760px; margin: 0 auto; padding: 3.5rem 1.5rem 5rem; }
+
+    /* Category */
+    .category {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--accent); border-top: 1px solid var(--accent);
+      display: inline-block; padding-top: 0.3rem; margin-bottom: 1.2rem;
+    }
+
+    /* Headline */
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+      font-weight: 900; line-height: 1.08; letter-spacing: -0.02em;
+      margin-bottom: 1rem; color: var(--text);
+    }
+    h1 em { font-style: italic; color: var(--accent2); }
+
+    .deck {
+      font-size: 1.15rem; font-weight: 300; color: var(--muted); line-height: 1.6;
+      margin-bottom: 1.8rem;
+      border-left: 2px solid var(--accent2); padding-left: 1rem;
+    }
+
+    .byline {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem; letter-spacing: 0.08em; color: var(--muted);
+      margin-bottom: 0.4rem;
+    }
+
+    hr { border: none; border-top: 1px solid var(--border); margin: 2.5rem 0; }
+    hr.heavy { border-top: 1px solid rgba(255,255,255,.25); }
+
+    /* Body */
+    p { margin-bottom: 1.4rem; font-weight: 300; color: #d5e2f0; }
+    p + p { text-indent: 1.5em; }
+
+    /* Drop cap */
+    .drop-cap::first-letter {
+      font-family: 'Playfair Display', serif;
+      font-size: 4.5rem; font-weight: 900;
+      float: left; line-height: 0.8;
+      padding: 0.08em 0.12em 0 0;
+      color: var(--accent2);
+    }
+
+    /* Pull quote */
+    .pull-quote {
+      border-top: 1px solid rgba(125,211,252,.4);
+      border-bottom: 1px solid rgba(125,211,252,.4);
+      padding: 1.4rem 0; margin: 2.5rem 0; text-align: center;
+    }
+    .pull-quote p {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.45rem; font-weight: 700; font-style: italic;
+      line-height: 1.3; color: var(--text); text-indent: 0; margin: 0;
+    }
+    .pull-quote cite {
+      display: block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem; font-style: normal;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--muted); margin-top: 0.8rem;
+    }
+
+    /* Section heads */
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.45rem; font-weight: 700;
+      margin: 2.5rem 0 0.8rem; color: var(--text);
+    }
+    h2::before { content: '§ '; color: var(--accent); font-style: italic; }
+
+    /* Terminal */
+    .terminal {
+      background: rgba(0,0,0,.5);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.82rem; line-height: 1.7;
+      padding: 1.5rem; border-radius: 6px; margin: 2rem 0;
+    }
+    .terminal::before {
+      content: '● ● ●'; display: block;
+      color: rgba(255,255,255,.2); font-size: 0.7rem;
+      letter-spacing: 0.3em; margin-bottom: 1rem;
+    }
+    .terminal .prompt { color: #6dbf67; }
+    .terminal .comment { color: rgba(255,255,255,.3); }
+    .terminal .out { color: var(--muted); }
+
+    /* Fact box */
+    .fact-box {
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent2);
+      padding: 1.2rem 1.4rem; margin: 2rem 0;
+      background: rgba(167,139,250,.06);
+      border-radius: 4px;
+    }
+    .fact-box h3 {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--accent2); margin-bottom: 0.8rem;
+    }
+    .fact-box ul { list-style: none; padding: 0; }
+    .fact-box li {
+      padding: 0.25rem 0 0.25rem 1.4em; position: relative;
+      font-size: 0.95rem; color: var(--muted); font-family: 'Source Serif 4', serif;
+    }
+    .fact-box li::before {
+      content: '→'; position: absolute; left: 0;
+      color: var(--accent2); font-size: 0.85em;
+    }
+
+    /* Person cards */
+    .person {
+      display: grid; grid-template-columns: 52px 1fr; gap: 1rem;
+      margin: 1.5rem 0; padding: 1rem;
+      border: 1px solid var(--border); border-radius: 8px;
+      background: rgba(18,25,35,.8);
+    }
+    .person-initial {
+      width: 52px; height: 52px;
+      background: linear-gradient(135deg, rgba(125,211,252,.3), rgba(167,139,250,.3));
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem; font-weight: 900;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 6px; flex-shrink: 0;
+    }
+    .person-info strong {
+      font-family: 'Playfair Display', serif; font-size: 1rem;
+      display: block; margin-bottom: 0.2rem; color: var(--text);
+    }
+    .person-info span {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem; color: var(--accent);
+      letter-spacing: 0.08em; text-transform: uppercase;
+      display: block; margin-bottom: 0.3rem;
+    }
+    .person-info p {
+      font-size: 0.9rem; color: var(--muted);
+      margin: 0; text-indent: 0; font-weight: 300;
+    }
+
+    /* Closing note */
+    .note {
+      font-style: italic; color: var(--muted); font-size: 0.95rem;
+      text-indent: 0; border-left: 2px solid var(--border); padding-left: 1rem;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 1.5rem 2rem;
+      max-width: 900px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem; color: var(--muted); letter-spacing: 0.1em;
+    }
+
+    @media (max-width: 600px) {
+      .wrapper { padding: 2rem 1rem 3rem; }
+      .person { grid-template-columns: 1fr; }
+      .person-initial { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="sitebar">
+  <div class="sitebar-inner">
+    <a class="brand" href="/">Foxxe Labs</a>
+    <nav class="nav">
+      <a href="/">Home</a>
+      <a href="/tools/">Tools</a>
+      <a class="active" href="/claude-code/">Writing</a>
+      <a href="/about/">About</a>
+      <a href="/contact/">Contact</a>
+    </nav>
+  </div>
+</div>
+
+<div class="wrapper">
+
+  <span class="category">Origins &amp; Impact</span>
+
+  <h1>The <em>Accidental</em> Revolution:<br>How Claude Code Rewrote the Rules</h1>
+
+  <p class="deck">It started with a command-line hack to change the music. Eighteen months later, it's generating half a billion dollars a year and redefining what software development looks like.</p>
+
+  <p class="byline">By Todd McCaffrey &nbsp;·&nbsp; FoxxeLabs &nbsp;·&nbsp; March 2026</p>
+
+  <hr class="heavy">
+
+  <p class="drop-cap">In September 2024, a software engineer named Boris Cherny joined Anthropic with no particular mandate other than to explore. He began building command-line prototypes using the Claude API — getting familiar with the model, poking at edges, seeing what fell over. One early experiment connected Claude to AppleScript so it could report what music was playing in the office and change tracks on request. Cute, but trivial. Cherny moved on.</p>
+
+  <p>What changed everything was a conversation with product researcher Cat Wu, who was investigating how AI agents interact with computers. Cherny had a thought: what if the terminal could do more than play DJ? What if Claude could actually <em>read</em> files?</p>
+
+  <p>He gave the prototype filesystem access. And then — in a moment he later described as "mindblowing" — he watched Claude explore a codebase autonomously. It read a file. Followed an import. Read that file. Followed another import. Chained through the dependency graph until it had enough context to answer. No hand-holding. No scaffolding. Just a model that already knew how to do this, finally given the tools to do it.</p>
+
+  <div class="terminal">
+    <span class="comment"># The prototype that changed everything — November 2024</span>
+<span class="prompt">$</span> claude "explain what this module does"
+<span class="out">Reading src/index.ts...
+Following import → src/core/engine.ts
+Following import → src/utils/parser.ts
+Following import → src/types/schema.ts
+
+The module implements a streaming response pipeline with...</span>
+  </div>
+
+  <p>"In AI, we talk about 'product overhang'," Cherny explained. "A model able to do something specific, but the product it runs in doesn't capture that capability. What I discovered was pure product overhang. The model could already do this. There just wasn't a product built around it."</p>
+
+  <h2>Two People and No Process</h2>
+
+  <p>In November 2024 — exactly two months after Cherny's first prototype — a dogfooding-ready version was released internally at Anthropic. Day one: 20% of the engineering team was using it. Day five: 50%. There was no marketing, no launch strategy. Engineers just told other engineers.</p>
+
+  <p>By then, Sid Bidasaria had joined as engineer number two. The team had, by design, no formal processes. "We could work on pretty much whatever we wanted," Bidasaria said, "and so we just kept choosing the most promising ideas." He would go on to build Claude Code's subagents feature — a capability that took three days to ship, two of which were thrown away and rebuilt from scratch.</p>
+
+  <div class="pull-quote">
+    <p>"We weren't even sure if we wanted to launch it publicly. We thought it could be our secret sauce."</p>
+    <cite>Boris Cherny, Founding Engineer, Claude Code</cite>
+  </div>
+
+  <p>The internal debate about whether to release at all is perhaps the most interesting footnote in the product's history. The argument for keeping it internal was straightforward: if Claude Code gives Anthropic a measurable engineering advantage, why hand it to competitors? The counter-argument was philosophical. Anthropic is, at its core, a model safety company. It learns about safety and capability by putting tools in front of real users. Claude Code, if it was as compelling as the internal adoption suggested, would be one of the most information-rich safety experiments imaginable. Release won.</p>
+
+  <h2>The People Behind the Terminal</h2>
+
+  <div class="person">
+    <div class="person-initial">B</div>
+    <div class="person-info">
+      <strong>Boris Cherny</strong>
+      <span>Founding Engineer</span>
+      <p>Joined Anthropic September 2024. Built the first prototype in weeks. Recognised the "product overhang" insight that made the tool real. The music-changing demo was a dead end; the filesystem demo was everything.</p>
+    </div>
+  </div>
+
+  <div class="person">
+    <div class="person-initial">S</div>
+    <div class="person-info">
+      <strong>Sid Bidasaria</strong>
+      <span>Engineer #2 · Subagents</span>
+      <p>Arrived November 2024 and immediately saw what Cherny had built. Built the subagents feature — parallel Claude instances working a shared codebase — in three days, including two days' work scrapped and rebuilt. The "throw it away" instinct is a feature, not a bug.</p>
+    </div>
+  </div>
+
+  <div class="person">
+    <div class="person-initial">C</div>
+    <div class="person-info">
+      <strong>Cat Wu</strong>
+      <span>Founding Product Manager</span>
+      <p>Was researching AI agent computer use when a conversation with Cherny sparked the filesystem access idea. The product might not exist in its current form without that exchange — a reminder that the best PM work often looks like a conversation, not a roadmap.</p>
+    </div>
+  </div>
+
+  <h2>A Tool That Builds Itself</h2>
+
+  <p>The technical choices are worth noting. Claude Code runs on TypeScript, React (using the Ink framework for terminal rendering), Yoga for layout, and Bun as the runtime. The stack was chosen deliberately to be "on distribution" — playing to the model's existing strengths rather than working around them.</p>
+
+  <p>The headline stat: approximately 90% of Claude Code's own codebase is written by Claude Code. This is not a marketing claim. The team ships roughly five releases per engineer per day, iterating through ten or more prototypes before committing to any new feature. At that velocity, the only way to keep up is to let the tool eat its own tail.</p>
+
+  <div class="fact-box">
+    <h3>By the Numbers</h3>
+    <ul>
+      <li>$500M+ annualised revenue run rate by mid-2025</li>
+      <li>10× usage growth in three months post-GA launch (May 2025)</li>
+      <li>90% of Claude Code's own code written by Claude Code</li>
+      <li>~5 releases per engineer per day</li>
+      <li>67% increase in Anthropic PR throughput as headcount doubled</li>
+      <li>80%+ of Anthropic engineers use it daily — including the data scientists</li>
+      <li>2,000 Claude Code sessions to build a 100,000-line C compiler from scratch</li>
+    </ul>
+  </div>
+
+  <h2>The Compiler That Proved the Point</h2>
+
+  <p>The most dramatic demonstration of what Claude Code can do at scale came from Anthropic researcher Nicholas Carlini. He tasked 16 parallel Claude instances — an "agent team" — with a single goal: build a Rust-based C compiler capable of compiling the Linux kernel, from scratch, with no internet access.</p>
+
+  <p>The result, across nearly 2,000 Claude Code sessions and $20,000 in API costs: a clean-room 100,000-line compiler that builds Linux 6.9 on x86, ARM, and RISC-V. It compiles QEMU, FFmpeg, SQLite, PostgreSQL, and Redis. It passes 99% of the GCC torture test suite. And — the developer's true litmus test — it compiles and runs Doom.</p>
+
+  <p>No human wrote that compiler. A human designed the harness, supervised the process, and made architectural calls. But the code itself emerged from parallel agents negotiating a shared codebase, specialising roles, coalescing duplicates, and critiquing each other's design decisions. Carlini's term for this: "agent teams." His conclusion: we are early, and fully autonomous development comes with real risks, but the scope of what's achievable has expanded by an order of magnitude.</p>
+
+  <h2>Not Just for Developers</h2>
+
+  <p>Cherny conceived Claude Code for software engineers — hence the name. The reality turned out broader. Anthropic's own legal team used it to prototype an internal phone-tree system to route queries to the right lawyers. Marketers generated hundreds of ad variations in minutes. Data scientists ran SQL queries without writing SQL. Designers made state management changes that, in Cherny's words, "you typically wouldn't see a designer making."</p>
+
+  <p>The pattern is consistent with what happens when you give a sufficiently capable tool to a sufficiently varied population: the use cases you didn't design for outnumber the ones you did. The name is already slightly wrong. That might be the best sign of all.</p>
+
+  <hr>
+
+  <p class="note">Claude Code is available via the Claude Pro, Max, Team, and Enterprise plans, and through the Anthropic API. The Claude Code team is still hiring.</p>
+
+</div>
+
+<footer>
+  <span>© <span id="year"></span> FoxxeLabs Limited</span>
+  <span><a href="https://anseo.irish">anseo.irish</a> &nbsp;·&nbsp; <a href="/">foxxelabs.ie</a></span>
+</footer>
+
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
